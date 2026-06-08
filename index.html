@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Demo</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2937;
+      background: #f6f8fb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+    }
+
+    main {
+      width: min(960px, 100%);
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.05;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.7;
+      color: #4b5563;
+    }
+
+    .intro {
+      max-width: 640px;
+      font-size: 1.1rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .button.primary {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .button.secondary {
+      border: 1px solid #d1d5db;
+      color: #374151;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .feature {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 18px;
+      background: #f9fafb;
+    }
+
+    .feature h2 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    footer {
+      margin-top: 36px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Hello, website.</h1>
+    <p class="intro">
+      This is a simple starter page for the local Git worktree. Edit this file
+      to begin shaping your site.
+    </p>
+
+    <div class="actions" aria-label="Page actions">
+      <a class="button primary" href="#features">View features</a>
+      <a class="button secondary" href="https://github.com/kingla0624/website">GitHub repo</a>
+    </div>
+
+    <section id="features" class="features" aria-label="Example features">
+      <article class="feature">
+        <h2>Clean HTML</h2>
+        <p>Semantic structure with a compact layout.</p>
+      </article>
+      <article class="feature">
+        <h2>Responsive CSS</h2>
+        <p>The page adapts from desktop to mobile widths.</p>
+      </article>
+      <article class="feature">
+        <h2>Easy to Extend</h2>
+        <p>Add sections, links, images, or scripts as the site grows.</p>
+      </article>
+    </section>
+
+    <footer>
+      Built from <code>index.html</code>.
+    </footer>
+  </main>
+</body>
+</html>
