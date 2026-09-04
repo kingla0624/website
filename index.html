@@ -1,60 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Demo</title>
+  <meta name="description" content="Kingla Apps 是专注于移动应用开发、发布与长期维护的产品工作室。">
+  <title>Kingla Apps | 移动应用产品工作室</title>
   <style>
     :root {
-      color-scheme: light;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #1f2937;
-      background: #f6f8fb;
+      color-scheme: dark;
+      font-family: Inter, Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+      background: #08090d;
+      color: #f7f8ff;
+      --bg: #08090d;
+      --panel: rgba(17, 19, 28, 0.82);
+      --panel-strong: #11131c;
+      --panel-soft: rgba(255, 255, 255, 0.045);
+      --line: rgba(255, 255, 255, 0.11);
+      --line-strong: rgba(255, 255, 255, 0.18);
+      --text: #f7f8ff;
+      --muted: #9da3b4;
+      --subtle: #6f7689;
+      --blue: #7aa2ff;
+      --blue-strong: #5f86f2;
+      --cyan: #68e1fd;
+      --green: #69db9c;
+      --radius: 8px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.46);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 32px;
+      background:
+        radial-gradient(circle at 50% -20%, rgba(91, 116, 255, 0.22), transparent 38%),
+        linear-gradient(180deg, #0c0d14 0%, #08090d 38%, #08090d 100%);
+      color: var(--text);
     }
 
-    main {
-      width: min(960px, 100%);
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 40px;
-      box-shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95), transparent 72%);
+      pointer-events: none;
     }
 
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      line-height: 1.05;
-    }
-
-    p {
-      margin: 0;
-      line-height: 1.7;
-      color: #4b5563;
-    }
-
-    .intro {
-      max-width: 640px;
-      font-size: 1.1rem;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 18%, rgba(104, 225, 253, 0.08), transparent 34%);
+      pointer-events: none;
     }
 
     a {
@@ -62,84 +72,966 @@
       text-decoration: none;
     }
 
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+      background: rgba(8, 9, 13, 0.76);
+      backdrop-filter: blur(18px) saturate(145%);
+    }
+
+    .nav {
+      width: min(1180px, calc(100% - 40px));
+      min-height: 64px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      border-radius: 8px;
+      color: #ffffff;
+      background:
+        linear-gradient(135deg, rgba(122, 162, 255, 0.95), rgba(104, 225, 253, 0.72)),
+        #1b2030;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22) inset;
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: #b7bdcc;
+      font-size: 0.93rem;
+    }
+
+    .nav-links a {
+      transition: color 160ms ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 13px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .hero {
+      width: min(1180px, calc(100% - 40px));
+      min-height: calc(100vh - 64px);
+      margin: 0 auto;
+      padding: 96px 0 76px;
+      display: grid;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.045);
+      color: #c7ccda;
+      font-size: 0.88rem;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.025) inset;
+    }
+
+    .spark {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(105, 219, 156, 0.9);
+    }
+
+    h1 {
+      max-width: 940px;
+      margin: 28px 0 0;
+      color: #ffffff;
+      font-size: clamp(3.4rem, 8vw, 7.6rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      font-weight: 820;
+    }
+
+    .lead {
+      max-width: 720px;
+      margin: 26px auto 0;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 1.8vw, 1.28rem);
+      line-height: 1.78;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 44px;
-      padding: 0 18px;
+      padding: 0 17px;
       border-radius: 8px;
-      font-weight: 700;
+      border: 1px solid transparent;
+      font-weight: 760;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
     }
 
     .button.primary {
-      background: #2563eb;
-      color: #ffffff;
+      color: #08101d;
+      background: linear-gradient(180deg, #ffffff, #cddcff);
+      box-shadow: 0 14px 38px rgba(122, 162, 255, 0.2);
     }
 
     .button.secondary {
-      border: 1px solid #d1d5db;
-      color: #374151;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.055);
+      border-color: var(--line-strong);
     }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-top: 36px;
-    }
-
-    .feature {
-      border: 1px solid #e5e7eb;
+    .product-shell {
+      width: min(1080px, 100%);
+      margin-top: 62px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 8px;
-      padding: 18px;
-      background: #f9fafb;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02)),
+        rgba(12, 14, 22, 0.92);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      text-align: left;
     }
 
-    .feature h2 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-      color: #111827;
+    .window-bar {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(255, 255, 255, 0.035);
+      color: #7f879b;
+      font-size: 0.82rem;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 230px 1fr 280px;
+      min-height: 520px;
+    }
+
+    .sidebar,
+    .inspector {
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .sidebar {
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .inspector {
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .workspace-main {
+      padding: 22px;
+      background: rgba(8, 9, 13, 0.24);
+    }
+
+    .panel-title {
+      margin: 0 0 16px;
+      color: #f8f9ff;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .side-item,
+    .issue-row,
+    .status-item {
+      display: grid;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+    }
+
+    .side-item {
+      grid-template-columns: 18px 1fr;
+      min-height: 36px;
+      padding: 0 9px;
+      color: #aeb5c7;
+      font-size: 0.9rem;
+    }
+
+    .side-item.active {
+      background: rgba(122, 162, 255, 0.12);
+      color: #ffffff;
+    }
+
+    .side-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 14px rgba(122, 162, 255, 0.7);
+    }
+
+    .side-dot.dim {
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: none;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .toolbar h2 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.36rem;
+      letter-spacing: -0.02em;
+    }
+
+    .toolbar span {
+      color: var(--subtle);
+      font-size: 0.9rem;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .lane {
+      min-height: 358px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.026);
+    }
+
+    .lane h3 {
+      margin: 0 0 11px;
+      color: #bfc5d5;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .issue-card {
+      padding: 13px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .issue-card strong {
+      display: block;
+      color: #ffffff;
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .issue-card span {
+      display: block;
+      margin-top: 9px;
+      color: var(--subtle);
+      font-size: 0.8rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 0 7px;
+      border-radius: 999px;
+      color: #cfd5e6;
+      background: rgba(255, 255, 255, 0.07);
+      font-size: 0.74rem;
+    }
+
+    .status-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .status-item {
+      grid-template-columns: 34px 1fr;
+      min-height: 58px;
+      padding: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .status-icon {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(122, 162, 255, 0.13);
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 0.76rem;
+    }
+
+    .status-item strong,
+    .status-item span {
+      display: block;
+    }
+
+    .status-item strong {
+      color: #ffffff;
+      font-size: 0.86rem;
+    }
+
+    .status-item span {
+      margin-top: 2px;
+      color: var(--subtle);
+      font-size: 0.78rem;
+    }
+
+    .section {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 96px 0;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 44px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      margin: 0 0 13px;
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(2.25rem, 5vw, 4.7rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.78;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      min-height: 268px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0%, rgba(122, 162, 255, 0.16), transparent 38%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card.wide {
+      grid-column: span 2;
+    }
+
+    .card h3 {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(1.35rem, 2vw, 1.9rem);
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.76;
+    }
+
+    .mini-terminal {
+      margin-top: 24px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.28);
+      color: #c9d2ff;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.84rem;
+      line-height: 1.7;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .metric {
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.052);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .metric strong,
+    .metric span {
+      display: block;
+    }
+
+    .metric strong {
+      color: #ffffff;
+      font-size: 1.28rem;
+    }
+
+    .metric span {
+      margin-top: 4px;
+      color: var(--subtle);
+      font-size: 0.78rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-row {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .feature-row strong {
+      display: block;
+      color: #ffffff;
+      font-size: 1.02rem;
+    }
+
+    .feature-row span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .timeline {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      overflow: hidden;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      padding: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .timeline-row:last-child {
+      border-bottom: 0;
+    }
+
+    .timeline-row time {
+      color: var(--blue);
+      font-weight: 850;
+      font-size: 0.86rem;
+    }
+
+    .timeline-row strong {
+      display: block;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .timeline-row p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.66;
+    }
+
+    .quote {
+      padding: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(122, 162, 255, 0.13), rgba(255, 255, 255, 0.035)),
+        rgba(255, 255, 255, 0.035);
+      text-align: center;
+    }
+
+    .quote p {
+      max-width: 880px;
+      margin: 0 auto;
+      color: #ffffff;
+      font-size: clamp(1.7rem, 3vw, 3rem);
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+    }
+
+    .quote span {
+      display: block;
+      margin-top: 18px;
+      color: var(--muted);
+    }
+
+    .cta {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto 34px;
+      padding: 72px 32px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(122, 162, 255, 0.2), transparent 48%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.035));
+      text-align: center;
+    }
+
+    .cta h2 {
+      max-width: 820px;
+      margin: 0 auto;
+      color: #ffffff;
+      font-size: clamp(2.4rem, 5vw, 5.2rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .cta p {
+      max-width: 660px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 1.06rem;
     }
 
     footer {
-      margin-top: 36px;
-      color: #6b7280;
-      font-size: 0.9rem;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 32px 0 44px;
+      color: var(--subtle);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: #b5bbcc;
+    }
+
+    @media (max-width: 1020px) {
+      .workspace {
+        grid-template-columns: 190px 1fr;
+      }
+
+      .inspector {
+        display: none;
+      }
+
+      .section-heading,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card.wide {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        min-height: auto;
+        padding: 15px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 14px;
+        overflow-x: auto;
+        padding-bottom: 3px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 70px 0 52px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 16vw, 4.4rem);
+      }
+
+      .product-shell {
+        margin-top: 42px;
+      }
+
+      .workspace {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .board {
+        grid-template-columns: 1fr;
+      }
+
+      .lane {
+        min-height: auto;
+      }
+
+      .metric-row,
+      .timeline-row {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .section-heading h2,
+      .cta h2 {
+        letter-spacing: -0.035em;
+      }
+
+      .quote,
+      .cta {
+        padding: 42px 20px;
+      }
     }
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <nav class="nav" aria-label="主导航">
+      <a class="brand" href="index.html" aria-label="Kingla Apps 首页">
+        <span class="brand-mark">KA</span>
+        <span>Kingla Apps</span>
+      </a>
+      <div class="nav-links">
+        <a href="#product">产品</a>
+        <a href="#platform">平台</a>
+        <a href="#roadmap">路线</a>
+        <a href="#support">支持</a>
+        <a class="nav-action" href="privacy-policy.html">隐私政策</a>
+      </div>
+    </nav>
+  </header>
+
   <main>
-    <h1>Hello, website.</h1>
-    <p class="intro">
-      This is a simple starter page for the local Git worktree. Edit this file
-      to begin shaping your site.
-    </p>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-label">
+        <span class="spark"></span>
+        移动应用产品工作室
+      </div>
+      <h1 id="hero-title">为移动产品构建清晰的发布系统。</h1>
+      <p class="lead">
+        Kingla Apps 将移动应用的设计、开发、上架、隐私政策和用户支持放进同一个简洁系统。少一点噪音，多一点执行力。
+      </p>
+      <div class="actions">
+        <a class="button primary" href="#product">查看产品系统</a>
+        <a class="button secondary" href="#platform">了解能力</a>
+      </div>
 
-    <div class="actions" aria-label="Page actions">
-      <a class="button primary" href="#features">View features</a>
-      <a class="button secondary" href="https://github.com/kingla0624/website">GitHub repo</a>
-    </div>
+      <div class="product-shell" aria-label="产品管理界面预览">
+        <div class="window-bar">
+          <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span>kingla.app/workspace</span>
+          <span>Synced</span>
+        </div>
+        <div class="workspace">
+          <aside class="sidebar" aria-label="工作区导航">
+            <p class="panel-title">Workspace</p>
+            <div class="side-item active"><span class="side-dot"></span><span>Mobile Apps</span></div>
+            <div class="side-item"><span class="side-dot dim"></span><span>Releases</span></div>
+            <div class="side-item"><span class="side-dot dim"></span><span>Review Kit</span></div>
+            <div class="side-item"><span class="side-dot dim"></span><span>Privacy</span></div>
+            <div class="side-item"><span class="side-dot dim"></span><span>Support</span></div>
+          </aside>
 
-    <section id="features" class="features" aria-label="Example features">
-      <article class="feature">
-        <h2>Clean HTML</h2>
-        <p>Semantic structure with a compact layout.</p>
-      </article>
-      <article class="feature">
-        <h2>Responsive CSS</h2>
-        <p>The page adapts from desktop to mobile widths.</p>
-      </article>
-      <article class="feature">
-        <h2>Easy to Extend</h2>
-        <p>Add sections, links, images, or scripts as the site grows.</p>
-      </article>
+          <section class="workspace-main" aria-label="产品发布看板">
+            <div class="toolbar">
+              <div>
+                <h2>App Release Board</h2>
+                <span>4 active tracks · 12 planned tasks</span>
+              </div>
+              <span>Q3</span>
+            </div>
+            <div class="board">
+              <article class="lane">
+                <h3>Design</h3>
+                <div class="issue-card">
+                  <strong>定义首个 iOS 工具应用的信息架构</strong>
+                  <span>UX · Priority High</span>
+                  <div class="chip-row"><span class="chip">Flow</span><span class="chip">Prototype</span></div>
+                </div>
+                <div class="issue-card">
+                  <strong>统一 App 截图与商店展示风格</strong>
+                  <span>Creative · In review</span>
+                </div>
+              </article>
+              <article class="lane">
+                <h3>Build</h3>
+                <div class="issue-card">
+                  <strong>发布页面与隐私政策双语化</strong>
+                  <span>Web · Ready</span>
+                  <div class="chip-row"><span class="chip">Privacy</span><span class="chip">Store</span></div>
+                </div>
+                <div class="issue-card">
+                  <strong>构建反馈入口和版本记录</strong>
+                  <span>Support · Active</span>
+                </div>
+              </article>
+              <article class="lane">
+                <h3>Launch</h3>
+                <div class="issue-card">
+                  <strong>准备 App Store 审核材料</strong>
+                  <span>Release · Planned</span>
+                  <div class="chip-row"><span class="chip">iOS</span><span class="chip">Review</span></div>
+                </div>
+                <div class="issue-card">
+                  <strong>整理 Android 发布清单</strong>
+                  <span>Android · Backlog</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <aside class="inspector" aria-label="发布状态">
+            <p class="panel-title">Status</p>
+            <div class="status-list">
+              <div class="status-item"><span class="status-icon">01</span><div><strong>Website</strong><span>企业官网已建立</span></div></div>
+              <div class="status-item"><span class="status-icon">02</span><div><strong>Privacy</strong><span>中英文政策可用</span></div></div>
+              <div class="status-item"><span class="status-icon">03</span><div><strong>Support</strong><span>Issues 反馈入口</span></div></div>
+              <div class="status-item"><span class="status-icon">04</span><div><strong>Store</strong><span>发布资料准备中</span></div></div>
+            </div>
+          </aside>
+        </div>
+      </div>
     </section>
 
-    <footer>
-      Built from <code>index.html</code>. <a href="privacy-policy.html">隐私政策 / Privacy Policy</a>
-    </footer>
+    <section id="product" class="section" aria-labelledby="product-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Product System</p>
+          <h2 id="product-title">从想法到上架，所有信息都有归属。</h2>
+        </div>
+        <p>一个移动产品不只是 App 本身。它还需要官网、隐私政策、支持入口、版本说明、审核材料和长期维护流程。</p>
+      </div>
+      <div class="grid">
+        <article class="card wide">
+          <h3>以发布为中心组织产品工作。</h3>
+          <p>每个应用都围绕“可被用户理解、可被平台审核、可被长期维护”来构建。官网负责承载公开信息，产品系统负责保持节奏。</p>
+          <div class="metric-row">
+            <div class="metric"><strong>iOS</strong><span>Apple 生态发布</span></div>
+            <div class="metric"><strong>Web</strong><span>官网与支持页面</span></div>
+            <div class="metric"><strong>Policy</strong><span>隐私透明</span></div>
+          </div>
+        </article>
+        <article class="card">
+          <h3>为审核而清晰。</h3>
+          <p>隐私政策、支持入口和版本说明保持可访问、可更新、可追踪。</p>
+          <div class="mini-terminal">
+            review.status = ready<br>
+            privacy.url = online<br>
+            support.channel = open
+          </div>
+        </article>
+        <article class="card">
+          <h3>为用户而克制。</h3>
+          <p>界面、文案和功能边界尽量减少干扰，让用户快速完成真正想做的事情。</p>
+        </article>
+        <article class="card wide">
+          <h3>为长期维护而设计。</h3>
+          <p>从第一版开始就建立反馈、更新、修复和公开说明的通道，避免产品上线后散落在不同地方。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="platform" class="section" aria-labelledby="platform-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Platform</p>
+          <h2 id="platform-title">把移动应用团队需要的基础能力变成稳定流程。</h2>
+        </div>
+        <p>官网不只是展示页，它也是发布基础设施的一部分。Kingla Apps 用同一套站点管理品牌、产品、政策和支持。</p>
+      </div>
+      <div class="split">
+        <div class="feature-list">
+          <div class="feature-row"><strong>产品首页</strong><span>为每个 App 提供清楚的介绍、下载入口和更新摘要。</span></div>
+          <div class="feature-row"><strong>隐私合规</strong><span>维护中英文隐私政策，并与应用实际数据使用保持一致。</span></div>
+          <div class="feature-row"><strong>用户支持</strong><span>让反馈、问题和功能建议可以进入可跟踪的处理流程。</span></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-row">
+            <time>Plan</time>
+            <div><strong>定义产品边界</strong><p>确定目标用户、核心功能、首版范围和发布平台。</p></div>
+          </div>
+          <div class="timeline-row">
+            <time>Build</time>
+            <div><strong>构建应用与官网</strong><p>同步准备 App、产品页面、隐私政策和支持入口。</p></div>
+          </div>
+          <div class="timeline-row">
+            <time>Review</time>
+            <div><strong>准备审核资料</strong><p>检查截图、描述、权限说明、隐私标签和政策 URL。</p></div>
+          </div>
+          <div class="timeline-row">
+            <time>Operate</time>
+            <div><strong>持续维护迭代</strong><p>根据用户反馈、平台规则和系统更新持续改进。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section" aria-labelledby="roadmap-title">
+      <div class="quote">
+        <p id="roadmap-title">一个好的移动应用官网，应该让用户、审核人员和开发者都少走一步。</p>
+        <span>Kingla Apps 的设计原则：信息明确、体验安静、入口可靠。</span>
+      </div>
+    </section>
+
+    <section id="support" class="cta" aria-labelledby="support-title">
+      <h2 id="support-title">准备发布下一个移动产品。</h2>
+      <p>从官网到隐私政策，从商店审核到用户反馈，Kingla Apps 会把公开信息整理成一个可信的产品入口。</p>
+      <div class="actions">
+        <a class="button primary" href="privacy-policy.html">隐私政策 / Privacy Policy</a>
+        <a class="button secondary" href="https://github.com/kingla0624/website/issues">GitHub Issues</a>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Copyright © 2026 Kingla Apps. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="#product">产品</a>
+        <a href="#platform">平台</a>
+        <a href="#support">支持</a>
+        <a href="privacy-policy.html">隐私政策</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
